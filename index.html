@@ -494,7 +494,13 @@ main{min-height:calc(100vh - 140px)}
 .usj-ep h3{margin:0 0 10px;font-weight:normal;font-size:17px}
 .usj-ep h3 small{display:block;font-size:12px;opacity:.75;margin-top:2px}
 .ep-rows{display:grid;gap:8px}
-.ep-row{display:flex;align-items:center;gap:10px;font-size:14px}
+.ep-row{display:flex;align-items:center;gap:8px;font-size:14px;flex-wrap:wrap}
+.ep-any{display:flex;align-items:center;gap:4px;font-size:12px;white-space:nowrap}
+.ep-any input{width:18px!important;height:18px;padding:0;margin:0;accent-color:#3E3A39}
+.ep-row .ep-n{flex-basis:100%}
+.ep-row{padding:8px 0;border-top:2px dashed rgba(62,58,57,.2)}
+.ep-row:first-child{border-top:0;padding-top:0}
+.ep-row input[type=time]:disabled{opacity:.4}
 .ep-n{flex:1;min-width:0}
 .ep-row input,.ep-park input{font:inherit;font-size:16px;color:var(--ink);background:var(--paper);border:2px solid var(--ink);border-radius:12px;padding:4px 8px;width:138px}
 .ep-park{display:flex;gap:10px 12px;margin-top:12px;padding-top:12px;border-top:2px dashed rgba(62,58,57,.3);flex-wrap:wrap}
@@ -531,6 +537,14 @@ main{min-height:calc(100vh - 140px)}
 .usj-tips ul{margin:0;padding-left:20px}
 .usj-tips li{font-size:13.5px;line-height:1.75;margin:6px 0}
 .usj-src{font-size:11.5px;opacity:.8;margin:10px 0 0;line-height:1.7}
+.usj-map{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;padding:14px;margin-bottom:18px;background:var(--sky-pale)}
+.usj-map h3{margin:0 0 4px;font-weight:normal;font-size:17px}
+.usj-map p{margin:0;font-size:12.5px}
+.map-links{display:grid;gap:8px;flex:1;min-width:200px}
+.usj-sub small{font-size:12px;opacity:.7;margin-left:6px}
+.usj-prog{display:grid;gap:6px;margin:0 0 10px;padding:10px 12px;border:2px solid var(--ink);border-radius:var(--r-md);background:var(--lav-pale)}
+.u-b-time{background:var(--paper);border:2px solid var(--ink);border-radius:var(--r-sm);padding:0 8px;font-size:12px}
+.stamp-bonus{display:block;font-size:10px;opacity:.7}
 /* ---------- Hotels ---------- */
 .hotels{display:grid;gap:16px}
 .hotel{display:flex;gap:14px;padding:14px 16px;align-items:flex-start}
@@ -800,31 +814,33 @@ footer svg{width:120px;height:auto;display:block;margin:0 auto 8px}
       </div>
     </div>
 
-    <div class="card usj-ep">
-      <h3>我的快速通關 5 時間 <small id="epHint">填入票上的時間，路線會自動重排</small></h3>
-      <div class="ep-rows" id="epRows"></div>
-      <div class="ep-park">
-        <label>開園<input type="time" id="usjOpen" step="300"></label>
-        <label>閉園<input type="time" id="usjClose" step="300"></label>
+    <div class="card usj-map">
+      <div>
+        <h3>環球影城官方園區地圖</h3>
+        <p>最新官方地圖在官網和官方 App 裡，入園後閘門旁也拿得到紙本。</p>
       </div>
-      <p class="ep-note">快通時間兩人共用，誰填都可以。沒填的會先用<span class="ep-sample">範例時間</span>排路線。</p>
+      <div class="map-links">
+        <a class="obtn" href="https://www.usj.co.jp/web/ja/jp/service-guide/parkmap" target="_blank" rel="noopener">官方地圖（日文）↗</a>
+        <a class="obtn" href="https://www.usj.co.jp/web/en/us/service-guide/parkmap" target="_blank" rel="noopener">官方地圖（英文）↗</a>
+      </div>
     </div>
 
-    <h3 class="usj-sub">今日最強路線</h3>
-    <div class="usj-legend"><span class="ul ep">快通</span><span class="ul rush">開園衝刺</span><span class="ul meal">用餐</span><span class="ul free">彈性時間</span></div>
+    <h3 class="usj-sub">我們的遊玩順序 <small>照園區動線排</small></h3>
+    <div class="usj-prog" id="usjProg"></div>
+    <div class="usj-legend"><span class="ul ep">快通</span><span class="ul meal">午餐</span><span class="ul free">選填</span></div>
     <ol class="timeline usj-tl" id="usjPlan"></ol>
 
     <div class="card usj-tips">
       <h3>攻略重點</h3>
       <ul>
-        <li><b>開園前 1 小時到閘門</b>：假日人多，7:15 前到 JR 環球城站旁的入口排隊（飯店就在旁邊）。先下載環球影城官方 App 並綁好門票。</li>
-        <li><b>開園先衝不在快通裡的熱門設施</b>：你的快通已經包含瑪利歐賽車、咚奇剛、飛天翼龍、禁忌之旅、小小兵混亂任務，所以早上排隊最短的時間，要拿去玩<b>好萊塢美夢</b>、<b>耀西冒險</b>、<b>侏羅紀公園</b>這些要排很久的。</li>
-        <li><b>任天堂世界入場</b>：快通裡有任天堂設施，就保證能在票上的時段入場；開園後一小段時間通常不用整理券也能進去，可以先玩耀西冒險。快通的入場資格只能用一次，進去後把耀西、能量手環金幣、拍照一次做完再出來。</li>
-        <li><b>哈利波特區</b>：禁忌之旅的快通附保證入場，進去順便玩<b>鷹馬的飛行</b>、看<b>奧利凡德的商店</b>、喝<b>奶油啤酒</b>。</li>
-        <li><b>午餐避開 11:00–13:00</b>：提早或延後吃。14:00 左右有 NO LIMIT! 遊行，這段時間排隊會變少，適合衝設施。</li>
-        <li><b>單人通道</b>：好萊塢美夢、侏羅紀公園、小小兵瘋狂乘車遊等都有單人通道，不介意分開坐可以大幅省時間。</li>
-        <li><b>11 月晚上會冷</b>：帶薄外套。侏羅紀公園會濕，準備輕便雨衣。</li>
-        <li><b>閉園後</b>：走到環球城市步行街吃 Shake Shack，飯店就在旁邊。</li>
+        <li><b>開園前 1 小時到閘門</b>：11/3 是假日、人很多，7:15 前到入口排隊，先下載官方 App 並綁好門票。</li>
+        <li><b>早上先玩好萊塢區</b>：太空幻想、好萊塢美夢就在入口附近，開園後排隊最短，接著往環球奇境、哈利波特區走。</li>
+        <li><b>禁忌之旅、飛天翼龍的快通不限時間</b>：排隊越長的時候用越划算。</li>
+        <li><b>任天堂世界 15:30 快通保證入場，只能進一次</b>：進去後把能量手環、瑪利歐賽車、咚奇剛一次玩完再出來。</li>
+        <li><b>午餐</b>：首選哈利波特區的三根掃帚，玩完禁忌之旅就近吃；備案是任天堂世界的奇諾比奧咖啡，要在任天堂世界裡面，於門口掃 QR Code 拿當日整理券，等於要 15:30 進去後才能吃。</li>
+        <li><b>18:00 後</b>：萬聖節殭屍出沒；侏羅紀公園這時會變成「在黑暗中」的夜間版本。</li>
+        <li><b>單人通道</b>：好萊塢美夢、侏羅紀公園、小小兵瘋狂乘車遊等都有，不介意分開坐可以省很多時間。</li>
+        <li><b>11 月晚上會冷</b>：帶薄外套；侏羅紀公園會濕，準備輕便雨衣。閉園後去城市步行街吃 Shake Shack。</li>
       </ul>
       <p class="usj-src">參考：<a href="https://castel.jp/p/7726" target="_blank" rel="noopener">castel USJ 攻略</a>、<a href="https://castel.jp/p/2152" target="_blank" rel="noopener">開園時間預測</a>、<a href="https://letsgokyoto.com/super-nintendo-world-guide-university-studio-japan/" target="_blank" rel="noopener">任天堂世界攻略</a>、<a href="https://happyell.co.jp/event/usj-autumn2026" target="_blank" rel="noopener">2026 秋季活動</a>、<a href="https://kazumaru-room.com/usj-november-crowd-2026/" target="_blank" rel="noopener">11 月擁擠預測</a>。排隊時間是推估，實際以 App 為準。</p>
     </div>
@@ -1068,7 +1084,7 @@ footer svg{width:120px;height:auto;display:block;margin:0 auto 8px}
         '飛天翼龍',
         '<a href="https://www.usj.co.jp/web/ja/jp/attractions/harry-potter-and-the-forbidden-journey" target="_blank" rel="noopener">哈利波特與禁忌之旅™</a>',
         '<a href="https://www.usj.co.jp/web/ja/jp/attractions/illuminations-villain-con-minion-blast/" target="_blank" rel="noopener">小小兵混亂任務：成為偉大反派之路</a>'],
-        p:'以上非遊玩順序。待補：票券上各設施的指定時段與主題區入場時段，拿到後再排順序與午餐。'}
+        p:'完整遊玩順序、快通時段（任天堂世界 15:30 入場、瑪利歐 15:30、咚奇剛 16:00、小小兵 18:00）和午餐，請看「環球」分頁。'}
     },
     { d:'第 4 天', date:'11/04', wk:'三', iso:'2026-11-04', wx:'osaka', title:'海遊館・港灣巡航・壽司與夜景', area:'天保山 → 難波 → 梅田／北新地', stay:'京阪難波格蘭德飯店', art:'fish',
       items:[
@@ -1332,6 +1348,56 @@ footer svg{width:120px;height:auto;display:block;margin:0 auto 8px}
   PIC.torii={bg:'var(--coral-pale)', s:'<g '+K+'><rect x="22" y="30" width="7" height="42" fill="#F2A497"/><rect x="51" y="30" width="7" height="42" fill="#F2A497"/>'+
     '<rect x="16" y="36" width="48" height="6" fill="#F2A497"/><path d="M8 22q32-8 64 0l-3 8H11z" fill="#F2A497"/></g>'+
     '<g class="anim twinkle"><path transform="translate(66 52)" d="M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6z" fill="#F6D27A" stroke="#3E3A39" stroke-width="1.4"/></g>'};
+
+  PIC.space={bg:'var(--lav-pale)', s:'<circle cx="54" cy="24" r="12" fill="#F7B6C8" '+K+'/><path d="M38 28q16-8 32-2" fill="none" '+K2+'/>'+
+    '<g class="anim twinkle"><path transform="translate(16 18)" d="M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6z" fill="#F6D27A" stroke="#3E3A39" stroke-width="1.4"/></g>'+
+    '<path d="M6 64q20-26 40-12t28-20" fill="none" '+K+'/><g class="anim bob"><rect x="22" y="44" width="20" height="11" rx="4" fill="#A8D3E6" '+K2+' transform="rotate(-24 32 50)"/></g>'};
+  PIC.biplane={bg:'var(--sky-pale)', s:'<g class="anim bob"><path d="M14 38h40q10 0 12 6-2 6-12 6H14z" fill="#F2A497" '+K+'/>'+
+    '<rect x="28" y="24" width="10" height="34" rx="3" fill="#FFFCF6" '+K2+'/><rect x="20" y="22" width="26" height="6" rx="3" fill="#F6D27A" '+K2+'/><rect x="20" y="54" width="26" height="6" rx="3" fill="#F6D27A" '+K2+'/>'+
+    '<path d="M66 40v8M68 36v16" '+K2+'/><circle cx="54" cy="40" r="4" fill="#A8D3E6" stroke="#3E3A39" stroke-width="1.6"/><path d="M14 40l-6-6v18l6-6" fill="#F2A497" '+K2+'/></g>'+
+    '<path d="M6 70q8-4 16 0t16 0 16 0 16 0" fill="none" stroke="#3E3A39" stroke-width="2" stroke-linecap="round" opacity=".4"/>'};
+  PIC.wing={bg:'var(--peach-pale)', s:'<g class="anim sway"><path d="M14 54q4-30 40-36q-6 8-4 14q-8 2-10 10q-8 2-12 10q-8 0-14 2z" fill="#D9D2C5" '+K+'/>'+
+    '<path d="M22 48q10-14 26-22M30 50q8-8 16-14" fill="none" '+K2+'/></g><path d="M50 60l10-8 8 4" fill="none" '+K2+'/>'+
+    '<g class="anim twinkle"><path transform="translate(62 22)" d="M0-5 1.4-1.4 5 0 1.4 1.4 0 5-1.4 1.4-5 0-1.4-1.4z" fill="#F6D27A" stroke="#3E3A39" stroke-width="1.2"/></g>'};
+  PIC.hogcastle={bg:'var(--lav-pale)', s:'<path d="M8 70h64" '+K+'/>'+
+    '<rect x="14" y="36" width="12" height="34" fill="#D9D2C5" '+K2+'/><path d="M12 36l8-14 8 14z" fill="#3B4A86" '+K2+'/>'+
+    '<rect x="34" y="26" width="14" height="44" fill="#D9D2C5" '+K2+'/><path d="M32 26l9-18 9 18z" fill="#3B4A86" '+K2+'/>'+
+    '<rect x="56" y="40" width="10" height="30" fill="#D9D2C5" '+K2+'/><path d="M54 40l7-12 7 12z" fill="#3B4A86" '+K2+'/>'+
+    '<g fill="#F6D27A" stroke="#3E3A39" stroke-width="1.2"><rect class="anim twinkle" x="38" y="34" width="5" height="7" rx="2"/><rect x="18" y="44" width="4" height="6" rx="2"/><rect class="anim twinkle" style="animation-delay:-1s" x="59" y="48" width="4" height="6" rx="2"/></g><path d="M38 70v-10a3 3 0 0 1 6 0v10" fill="#3E3A39"/>'};
+  PIC.broom={bg:'var(--yellow-pale)', s:'<g class="anim bob"><path d="M12 62 56 22" stroke="#C98A5A" stroke-width="5" stroke-linecap="round"/><path d="M12 62 56 22" fill="none" stroke="#3E3A39" stroke-width="1.5" opacity=".4"/>'+
+    '<path d="M50 30l12-16 8 8-16 12z" fill="#F6D27A" '+K2+'/><path d="M56 22l8-6M58 26l8-4" stroke="#3E3A39" stroke-width="1.3"/></g>'+
+    '<g class="anim twinkle"><path transform="translate(22 24)" d="M0-6 1.6-1.6 6 0 1.6 1.6 0 6-1.6 1.6-6 0-1.6-1.6z" fill="#FFFCF6" stroke="#3E3A39" stroke-width="1.4"/></g><path d="M8 72h64" '+K2+'/>'};
+  PIC.tankard={bg:'var(--peach-pale)', s:'<g class="anim steam"><path d="M30 18q-4-5 0-10M42 16q-4-5 0-10" fill="none" '+K+'/></g>'+
+    '<rect x="20" y="26" width="34" height="42" rx="5" fill="#E9B872" '+K+'/><path d="M54 34h6a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6h-6" fill="none" '+K+'/>'+
+    '<path d="M18 28q4-8 10-4q4-6 10-2q6-6 10 0q6-2 8 6z" fill="#FFFCF6" '+K2+'/><path d="M28 40v20M38 40v20M46 40v20" stroke="#3E3A39" stroke-width="1.4" opacity=".4"/>'};
+  PIC.gate={bg:'var(--green-pale)', s:'<rect x="12" y="30" width="56" height="40" rx="4" fill="#B9DAA5" '+K+'/><path d="M30 70V48a10 10 0 0 1 20 0v22" fill="#3B4A86" '+K+'/>'+
+    '<path d="M40 8l4 8.5 9 1-6.8 6.2 1.8 9L40 28l-8 4.7 1.8-9L27 17.5l9-1z" fill="#F6D27A" '+K2+' class="anim twinkle"/><text x="40" y="66" text-anchor="middle" font-size="9" fill="#FFFCF6">15:30</text>'};
+  PIC.band={bg:'var(--yellow-pale)', s:'<ellipse cx="40" cy="44" rx="26" ry="16" fill="none" stroke="#3E3A39" stroke-width="10"/><ellipse cx="40" cy="44" rx="26" ry="16" fill="none" stroke="#F2A497" stroke-width="6"/>'+
+    '<rect x="30" y="18" width="20" height="18" rx="4" fill="#F6D27A" '+K+'/><text x="40" y="31" text-anchor="middle" font-size="11" fill="#3E3A39">★</text>'+
+    '<g class="anim bob"><circle cx="64" cy="20" r="6" fill="#F6D27A" '+K2+'/><path d="M64 16v8" stroke="#3E3A39" stroke-width="1.6"/></g>'};
+  PIC.kart={bg:'var(--coral-pale)', s:'<g class="anim bob"><path d="M10 52l6-14h30l10 8h14v8z" fill="#F2A497" '+K+'/><path d="M30 38l4-10h10l2 10" fill="#A8D3E6" '+K2+'/>'+
+    '<circle cx="20" cy="56" r="7" fill="#3E3A39"/><circle cx="20" cy="56" r="3" fill="#FFFCF6"/><circle cx="60" cy="56" r="7" fill="#3E3A39"/><circle cx="60" cy="56" r="3" fill="#FFFCF6"/>'+
+    '<path d="M4 40h8M2 46h8" stroke="#3E3A39" stroke-width="2" stroke-linecap="round"/></g><path d="M4 70h72" '+K2+' stroke-dasharray="8 6"/>'};
+  PIC.minecart={bg:'var(--green-pale)', s:'<path d="M4 66l72-10M4 72l72-10" '+K2+'/>'+
+    '<g class="anim bob"><path d="M14 36h48l-6 22H20z" fill="#C98A5A" '+K+'/><path d="M18 44h42" stroke="#3E3A39" stroke-width="1.5"/>'+
+    '<circle cx="26" cy="60" r="5" fill="#3E3A39"/><circle cx="54" cy="58" r="5" fill="#3E3A39"/>'+
+    '<path d="M26 34q4-12 14-12q-6 4-8 12zM40 34q4-14 16-12q-8 4-10 12z" fill="#F6D27A" '+K2+'/></g>'};
+  PIC.ptero={bg:'var(--sky-pale)', s:'<g class="anim bob"><path d="M8 34q16-4 26 6q6-6 12-6q10-10 26-6q-12 6-16 16q-10-4-16 4q-6-8-16-4q-4-10-16-10z" fill="#B9DAA5" '+K+'/>'+
+    '<path d="M44 34l10-10 4 4-8 8" fill="#B9DAA5" '+K2+'/><circle cx="53" cy="28" r="1.5" fill="#3E3A39"/></g>'+
+    '<path d="M10 70l14-14 10 8 14-18 22 24z" fill="#D9D2C5" '+K2+'/>'};
+  PIC.blaster={bg:'var(--yellow-pale)', s:'<circle cx="52" cy="34" r="16" fill="#FFFCF6" '+K+'/><circle cx="52" cy="34" r="10" fill="#F2A497" '+K2+'/><circle cx="52" cy="34" r="4" fill="#FFFCF6" '+K2+'/>'+
+    '<path d="M8 58h22l4-8h8v8l-6 10H22l-2 6h-8z" fill="#A8D3E6" '+K+'/><path class="anim twinkle" d="M40 50l6-8" stroke="#F6D27A" stroke-width="3" stroke-linecap="round"/>'};
+  PIC.goggles={bg:'var(--yellow-pale)', s:'<path d="M4 40h72" stroke="#3E3A39" stroke-width="6"/>'+
+    '<circle cx="28" cy="40" r="15" fill="#D9D2C5" '+K+'/><circle cx="52" cy="40" r="15" fill="#D9D2C5" '+K+'/>'+
+    '<circle cx="28" cy="40" r="9" fill="#A8D3E6" '+K2+'/><circle cx="52" cy="40" r="9" fill="#F7B6C8" '+K2+'/><circle cx="25" cy="37" r="2.5" fill="#FFFCF6"/><circle cx="49" cy="37" r="2.5" fill="#FFFCF6"/>'+
+    '<text x="40" y="70" text-anchor="middle" font-size="10" fill="#3E3A39">3D</text>'};
+  PIC.darkboat={bg:'var(--lav-pale)', s:'<rect width="80" height="80" fill="#3B4A86"/><circle cx="62" cy="16" r="7" fill="#F6D27A" stroke="#3E3A39" stroke-width="2"/>'+
+    '<path d="M2 50q8-10 14-4q4-14 14-12q6-12 16-6l4 22z" fill="#2E3A6A"/><path d="M44 50V30l6-6q8 0 10 6l-6 4v16" fill="#2E3A6A"/><circle class="anim twinkle" cx="54" cy="29" r="1.6" fill="#F2A497"/>'+
+    '<g class="anim bob"><path d="M14 56h44l-6 10H20z" fill="#F6D27A" '+K2+'/><path d="M22 56v-6h28v6" fill="none" '+K2+'/></g>'+
+    '<path class="cp-shim" d="M8 72h20M44 74h24" stroke="#A8D3E6" stroke-width="2.5" stroke-linecap="round"/>'};
+  PIC.splash={bg:'var(--sky-pale)', s:'<path d="M0 56q10-6 20 0t20 0 20 0 20 0v24H0z" fill="#A8D3E6" '+K2+'/>'+
+    '<g class="anim bob"><path d="M18 50l8-10h22l10 6-4 6H20z" fill="#F2A497" '+K2+'/><rect x="30" y="34" width="8" height="8" rx="2" fill="#FFFCF6" '+K2+'/></g>'+
+    '<g class="wx-anim-drop"><circle cx="64" cy="30" r="3" fill="#A8D3E6" stroke="#3E3A39" stroke-width="1.4"/></g><g class="wx-anim-drop d2"><circle cx="70" cy="40" r="2.4" fill="#A8D3E6" stroke="#3E3A39" stroke-width="1.4"/></g><path d="M58 44q4-12 14-16" fill="none" '+K2+'/>'};
   // 行程標題 → 插圖
   var PICMAP = {
     '搭乘 HARUKA 特急前往京都':'train', '山福涮涮鍋晚餐':'hotpot', '先斗町、鴨川散步':'lantern',
@@ -1370,18 +1436,21 @@ footer svg{width:120px;height:auto;display:block;margin:0 auto 8px}
   var FOOT=[
     ['plane','關西機場',0,'國泰航空 CX564 去程，飛往關西機場'],['lantern','先斗町・鴨川',0,'先斗町、鴨川散步'],
     ['omamori','因幡堂',1,'因幡堂平等寺'],['market','錦市場',1,'錦市場逛街與午餐'],['kimono','祇園和服',1,'東山、祇園和服散步拍照'],['yakiniku','宗寿苑燒肉',1,'宗寿苑燒肉晚餐'],
-    ['coaster','環球影城',2,'快速通關設施＋其他設施'],
+    ['space','太空幻想',2,'u:space'],['coaster','好萊塢美夢',2,'u:hdr'],['biplane','史努比飛行員',2,'u:snoopy'],['wing','鷹馬的飛行',2,'u:hip'],['hogcastle','霍格華茲城堡',2,'u:castle'],['broom','禁忌之旅',2,'u:fj'],['tankard','三根掃帚午餐',2,'u:lunch'],
+    ['band','能量手環挑戰',2,'u:band'],['kart','瑪利歐賽車',2,'u:mk'],['minecart','咚奇剛礦車',2,'u:dk'],['ptero','飛天翼龍',2,'u:fd'],['blaster','小小兵瘋狂任務',2,'u:mb'],['goggles','小小兵乘車遊',2,'u:mm'],['darkboat','侏羅紀・黑暗中',2,'u:jpd'],['splash','水世界',2,'u:ww','bonus'],
     ['shark','海遊館',3,'大阪海遊館'],['wheel','天保山摩天輪',3,'海港散步、聖瑪麗亞號報到'],['ship','聖瑪麗亞號',3,'聖瑪麗亞號大阪港巡航'],['sky','空中庭園',3,'空中庭園展望台夜景'],['sushi','北新地壽司',3,'寿し処黒杉 心貫｜壽司晚餐'],
     ['lion','難波八阪神社',4,'難波八阪神社'],['castle','大阪城',4,'大阪城公園＋天守閣'],['ramen','中華蕎麥 葛',4,'中華蕎麥 葛午餐'],['bag','堀江橘子街',4,'堀江橘子街'],['liberty','美國村',4,'美國村'],
     ['dotonbori','道頓堀',4,'道頓堀、法善寺橫町散步'],['crab','蟹吉',4,'蟹吉 WEST 難波道頓堀店｜螃蟹・河豚料理'],['hozenji','法善寺橫丁',4,'道頓堀、法善寺橫町散步'],
     ['torii','大鳥大社',5,'大鳥大社參拜'],['bag','臨空 Outlet',5,'臨空 Outlet 購物、午餐'],['plane','回家囉',5,'國泰航空 CX565 回程']
   ];
   var STAMP_BY_TITLE={}; FOOT.forEach(function(f){ (STAMP_BY_TITLE[f[3]]=STAMP_BY_TITLE[f[3]]||[]).push(f); });
-  function stampKey(f){ var d=DAYS[f[2]]; return ckKey(d,[0,f[3]]); }
-  function gotOf(who,f){ return !!chkOf(who)[stampKey(f)]; }
-  function countOf(who){ return FOOT.filter(function(f){ return gotOf(who,f); }).length; }
+  function stampKey(f){ if(f[3].indexOf('u:')===0) return f[3]; var d=DAYS[f[2]]; return ckKey(d,[0,f[3]]); }
+  function gotOf(who,f){ var k=stampKey(f); if(k.indexOf('u:')===0) return !!(getPath('usj/done/'+who)||{})[k.slice(2)]; return !!chkOf(who)[k]; }
+  var FOOT_MAIN=null;
+  function countOf(who){ return FOOT.filter(function(f){ return !f[4]&&gotOf(who,f); }).length; }
+  function footTotal(){ return FOOT.filter(function(f){return !f[4];}).length; }
   var RANKS=[[0,'新手旅人'],[1,'關西初心者'],[25,'京都散步家'],[50,'大阪通'],[75,'關西達人'],[100,'傳說級旅人 🏆']];
-  function rankOf(got){ var pct=got/FOOT.length*100, r=RANKS[0][1]; RANKS.forEach(function(x){ if(x[0]>0&&pct>=x[0]) r=x[1]; }); return r; }
+  function rankOf(got){ var pct=got/footTotal()*100, r=RANKS[0][1]; RANKS.forEach(function(x){ if(x[0]>0&&pct>=x[0]) r=x[1]; }); return r; }
   function fillDayProg(i){
     var el=document.getElementById('dayProg'); if(!el) return;
     var day=DAYS[i], n=day.items.length, mc=myChk(), pc=ptChk();
@@ -1629,7 +1698,7 @@ footer svg{width:120px;height:auto;display:block;margin:0 auto 8px}
   /* ---------- 集章頁面 ---------- */
   var VIEW=null, lastGot=null;
   function renderGame(justKey){
-    var me=ME||'haoyu', pt=OTHER(), view=VIEW||me, all=FOOT.length;
+    var me=ME||'haoyu', pt=OTHER(), view=VIEW||me, all=footTotal();
     var got=countOf(me), pgot=countOf(pt), pct=got/all*100;
     $('gmWho').textContent=ME?NAME[ME]+' 的稱號':'我的稱號';
     $('gmGot').textContent=got; $('gmAll').textContent=all;
@@ -1643,13 +1712,13 @@ footer svg{width:120px;height:auto;display:block;margin:0 auto 8px}
     var other=view===me?pt:me;
     $('foot').innerHTML=DAYS.map(function(day,di){
       var items=FOOT.map(function(f,k){return [f,k];}).filter(function(x){return x[0][2]===di;});
-      var g=items.filter(function(x){return gotOf(view,x[0]);}).length;
-      return '<div class="foot-day'+(g===items.length?' full':'')+'"><span class="foot-dl">第 '+(di+1)+' 天<small>'+day.date+'</small></span><span class="foot-dc">'+g+' / '+items.length+(g===items.length?' ✓':'')+'</span>'+
+      var g=items.filter(function(x){return !x[0][4]&&gotOf(view,x[0]);}).length; var nItems=items.filter(function(x){return !x[0][4];}).length;
+      return '<div class="foot-day'+(g===nItems?' full':'')+'"><span class="foot-dl">第 '+(di+1)+' 天<small>'+day.date+'</small></span><span class="foot-dc">'+g+' / '+nItems+(g===nItems?' ✓':'')+'</span>'+
         '<div class="foot-grid" role="list">'+items.map(function(x){ var f=x[0], k=x[1], p=PIC[f[0]], ok=gotOf(view,f), key=stampKey(f), ob=ME&&gotOf(other,f);
           return '<button type="button" class="stamp'+(ok?' got':'')+(ok&&justKey===key&&view===me?' just':'')+'" role="listitem" data-i="'+f[2]+'" data-k="'+key+'" style="--r:'+((k%3)-1)*4+'deg" aria-label="'+esc(f[1])+(ok?'（已收集）':'（未收集）')+'">'+
             '<span class="stamp-pic">'+sv(p.s)+(ok?'<span class="stamp-get" aria-hidden="true">GET</span>':'<span class="stamp-q" aria-hidden="true">?</span>')+'</span>'+
             (ob?'<span class="stamp-ob who-av sm a-'+other+'" title="'+NAME[other]+'也收集了">'+AV[other]+'</span>':'')+
-            '<span class="stamp-name">'+esc(f[1])+'</span></button>';
+            '<span class="stamp-name">'+esc(f[1])+(f[4]?'<small class="stamp-bonus">選填</small>':'')+'</span></button>';
         }).join('')+'</div></div>';
     }).join('');
     var both=ME&&got===all&&pgot===all;
@@ -1664,6 +1733,7 @@ footer svg{width:120px;height:auto;display:block;margin:0 auto 8px}
   $('foot').addEventListener('click',function(e){
     var b=e.target.closest('.stamp'); if(!b) return;
     var di=+b.getAttribute('data-i'), k=b.getAttribute('data-k');
+    if(k.indexOf('u:')===0){ showPage('usj'); setTimeout(function(){ var t=document.getElementById('u-'+k.slice(2)); if(t){ t.scrollIntoView({behavior:reduce()?'auto':'smooth',block:'center'}); t.classList.add('flash'); setTimeout(function(){ t.classList.remove('flash'); },1600); } },60); return; }
     showPage('plan'); select(di,true);
     setTimeout(function(){ var t=document.getElementById('tl-'+k); if(t){ t.scrollIntoView({behavior:reduce()?'auto':'smooth',block:'center'}); t.classList.add('flash'); setTimeout(function(){ t.classList.remove('flash'); },1600); } },60);
   });
@@ -1776,94 +1846,45 @@ footer svg{width:120px;height:auto;display:block;margin:0 auto 8px}
   function renderWho(){ var a=$('whoAv'); a.textContent=ME?AV[ME]:'?'; a.className='who-av'+(ME?' a-'+ME:''); $('whoBtn').setAttribute('aria-label',ME?'目前是 '+NAME[ME]+'，點一下切換':'選擇你是誰'); }
 
 
-  /* ---------- 環球影城：依快通時間自動排路線 ---------- */
-  function toMin(t){ if(!t) return null; var m=String(t).match(/^(\d{1,2}):(\d{2})/); return m?(+m[1])*60+(+m[2]):null; }
-  function hm(m){ m=Math.round(m); return ('0'+Math.floor(m/60)).slice(-2)+':'+('0'+(m%60)).slice(-2); }
-  var ZN={ENT:'入口',HW:'好萊塢',NY:'紐約',MP:'小小兵樂園',JP:'侏羅紀公園',AV:'親善村',HP:'哈利波特',SNW:'任天堂世界',CW:'城市步行街'};
-  var EPS=[
-    {id:'dk',n:'咚奇剛的瘋狂礦車',z:'SNW',d:20,sample:'10:00',tip:'任天堂世界後方，從 1UP 工廠旁進入。'},
-    {id:'mk',n:'瑪利歐賽車：庫巴的挑戰',z:'SNW',d:25,sample:'10:30',tip:'有能量手環的話，賽車拿到的金幣也會計分。'},
-    {id:'hp',n:'哈利波特禁忌之旅',z:'HP',d:25,sample:'13:00',tip:'快通附保證入場，進去後把哈利波特區一次玩完。'},
-    {id:'fd',n:'飛天翼龍',z:'JP',d:20,sample:'16:00',tip:'全園最刺激，趴著飛；口袋東西要先寄物。'},
-    {id:'mb',n:'小小兵混亂任務',z:'MP',d:20,sample:'18:30',tip:'射擊型設施，兩人可以比分數。'}
+  /* ---------- 環球影城：我們的遊玩順序（照園區動線） ---------- */
+  var ZN={HW:'好萊塢',WL:'環球奇境',HP:'哈利波特',SNW:'任天堂世界',JP:'侏羅紀公園',MP:'小小兵樂園',WW:'水世界'};
+  var USJ=[
+    {id:'space',pic:'space',n:'太空幻想列車',z:'HW',tip:'室內旋轉雲霄飛車，開園後先衝。'},
+    {id:'hdr',pic:'coaster',n:'好萊塢美夢・乘車遊',z:'HW',tip:'可以選背景音樂；有單人通道。'},
+    {id:'snoopy',pic:'biplane',n:'史努比的王牌飛行員冒險',z:'WL',tip:'在環球奇境，可以自己控制高低的小飛機。'},
+    {id:'hip',pic:'wing',n:'鷹馬的飛行',z:'HP',tip:'小型雲霄飛車，排隊通常不長。'},
+    {id:'castle',pic:'hogcastle',n:'霍格華茲城堡之旅',z:'HP',tip:'走進城堡內部參觀，不用排設施。'},
+    {id:'fj',pic:'broom',n:'禁忌之旅',z:'HP',ep:1,time:'快通・不限時間',tip:'哈利波特區最熱門，快通直接走快速通道。'},
+    {id:'lunch',pic:'tankard',n:'午餐：三根掃帚',z:'HP',meal:1,tip:'首選，就在哈利波特區。備案：15:30 進任天堂世界後，在奇諾比奧咖啡門口掃 QR Code 拿整理券。'},
+    {id:'snw',pic:'gate',n:'任天堂世界入場',z:'SNW',ep:1,time:'15:30',entry:1,tip:'快通保證入場，只能進一次，進去後一次玩完再出來。'},
+    {id:'band',pic:'band',n:'能量手環挑戰',z:'SNW',tip:'敲磚塊收集金幣、挑戰鑰匙任務，要搭配官方 App。'},
+    {id:'mk',pic:'kart',n:'瑪利歐賽車：庫巴的挑戰書',z:'SNW',ep:1,time:'15:30–16:00',tip:'快通時段內去排；賽車拿到的金幣也算進手環分數。'},
+    {id:'dk',pic:'minecart',n:'咚奇剛的瘋狂礦車',z:'SNW',ep:1,time:'16:00–16:30',tip:'在任天堂世界後方，從 1UP 工廠旁進入。'},
+    {id:'fd',pic:'ptero',n:'飛天翼龍',z:'JP',ep:1,time:'快通・不限時間',tip:'全園最刺激，趴著飛；口袋東西要先寄物。'},
+    {id:'mb',pic:'blaster',n:'小小兵瘋狂任務：成為大壞蛋之路',z:'MP',ep:1,time:'18:00–18:30',tip:'射擊型設施，兩人可以比分數。'},
+    {id:'mm',pic:'goggles',n:'小小兵瘋狂乘車遊',z:'MP',tip:'有單人通道。'},
+    {id:'jpd',pic:'darkboat',n:'侏羅紀公園・乘船遊～在黑暗中',z:'JP',time:'18:00 後',tip:'夜間限定版本，最後會濕，記得雨衣。'},
+    {id:'ww',pic:'splash',n:'水世界（選填）',z:'WW',opt:1,tip:'水上特技秀，有空再看；場次以 App 為準，前排會濕。'}
   ];
-  var TASKS=[
-    {id:'yoshi',n:'耀西冒險',z:'SNW',acc:'SNW',pr:9,win:[['o+0','o+60',30],['*','*',45]],tip:'坐在耀西背上繞園區，順便找遊戲彩蛋。',rush:1},
-    {id:'band',n:'能量手環敲金幣・任天堂世界拍照',z:'SNW',acc:'SNW',pr:5,win:[['*','*',30]],tip:'手環 JPY 4,500，要搭配官方 App。'},
-    {id:'hdr',n:'好萊塢美夢・乘車遊',z:'HW',pr:8,win:[['o+0','o+110',30],['13:50','14:40',40],['c-80','c-20',35],['o+110','c-80',90,5]],tip:'早上和遊行時排隊最短；有單人通道。',rush:1},
-    {id:'jp',n:'侏羅紀公園・乘船遊',z:'JP',pr:7,win:[['o+0','o+150',35],['13:45','15:00',40],['o+150','c-30',70,4]],tip:'最後會濕，穿雨衣或坐後排。',rush:1},
-    {id:'mm',n:'小小兵瘋狂乘車遊',z:'MP',pr:6,win:[['o+0','o+180',40],['13:45','15:00',40],['c-90','c-20',30],['o+180','c-90',60,4]],tip:'有單人通道。'},
-    {id:'hip',n:'鷹馬的飛行',z:'HP',acc:'HP',pr:7,win:[['*','*',25]],tip:'小型雲霄飛車，排隊通常不長。'},
-    {id:'olli',n:'奧利凡德的商店・奶油啤酒',z:'HP',acc:'HP',pr:6,win:[['*','*',35]],tip:'魔杖選巫師的小劇場；奶油啤酒有冰的和熱的。'},
-    {id:'lunch',n:'午餐',z:'*',pr:10,meal:1,win:[['10:45','11:30',50],['12:50','15:00',50]],tip:'避開 11:00–13:00 尖峰。'},
-    {id:'jaws',n:'大白鯊',z:'AV',pr:3,win:[['12:00','c-30',35]],tip:'船長很搞笑，排隊通常比較短。'},
-    {id:'space',n:'太空幻想・乘車遊',z:'HW',pr:3,win:[['15:00','c-30',40]],tip:'室內旋轉雲霄飛車，有單人通道。'},
-    {id:'shop',n:'買伴手禮・寄物',z:'HW',pr:2,win:[['15:00','c-60',30]],tip:'下午店裡人比較少，買完寄投幣櫃。'}
-  ];
-  var MARKS=[{t:'14:00',n:'NO LIMIT! 遊行（約 50 分鐘）',tip:'大家都去看遊行，這時候排隊會變少。'},{t:'18:00',n:'萬聖節殭屍出沒',tip:'18:00 到閉園，好萊塢、紐約區街上會有殭屍。'}];
-  function wk(a,b){ if(a===b||b==='*') return 0; var w=10; if(a==='SNW'||b==='SNW') w+=4; if(a==='HP'||b==='HP') w+=3; if(a==='ENT') w-=4; return Math.max(4,w); }
-  function usjCfg(){ return getPath('usj')||{}; }
-  function planUSJ(){
-    var c=usjCfg(), ept=c.ep||{}, open=toMin(c.open)||toMin('08:30'), close=toMin(c.close)||toMin('21:30');
-    function abs(x){ if(x==='*') return null; if(x[0]==='o') return open+(+x.slice(1)); if(x[0]==='c') return close+(+x.slice(1)); return toMin(x); }
-    var ep=EPS.map(function(e){ var t=toMin(ept[e.id]); return {e:e,t:t==null?toMin(e.sample):t,sample:t==null}; }).sort(function(a,b){return a.t-b.t;});
-    var out=[{t:open-75,end:open,kind:'pre',id:'gate',n:'到入口排隊',tip:'假日人多，開園前 1 小時就要到；開好官方 App。',z:'ENT'}];
-    var cur=open, zone='ENT', done={}, i=0, g=0;
-    while(cur<close-5 && g++<300){
-      var nx=ep[i];
-      if(nx){ var w0=wk(zone,nx.e.z); if(cur+w0>=nx.t-12){ var st=Math.max(cur+w0,nx.t);
-          out.push({t:st,end:st+nx.e.d,kind:'ep',id:'ep-'+nx.e.id,n:nx.e.n,tip:nx.e.tip,z:nx.e.z,walk:w0,sample:nx.sample}); cur=st+nx.e.d; zone=nx.e.z; i++; continue; } }
-      var limit=nx?nx.t-wk(zone,nx.e.z):close-5, best=null;
-      TASKS.forEach(function(tk){
-        if(done[tk.id]) return;
-        var w=wk(zone,tk.z), s0=cur+w, pick=null;
-        tk.win.forEach(function(x){ if(pick) return; var a=abs(x[0]), b=abs(x[1]);
-          if(x[0]==='*'){ if(tk.acc&&zone!==tk.acc) return; pick=x; return; }
-          if(s0>=a&&s0<=b) pick=x; });
-        if(!pick) return;
-        if(tk.acc&&!(zone===tk.acc||s0<open+60)) return;
-        var d=pick[2]; if(s0+d>limit) return;
-        var sc=tk.pr-(pick[3]||0)+(w===0?3:0)+(tk.acc&&zone===tk.acc?6:0)+(tk.meal&&s0>=toMin('12:50')?10:0)+(pick[0]!=='*'&&!pick[3]&&abs(pick[1])-s0<40?2:0);
-        if(!best||sc>best.sc) best={tk:tk,s:s0,d:d,w:w,sc:sc};
-      });
-      if(best){ out.push({t:best.s,end:best.s+best.d,kind:best.tk.meal?'meal':(best.tk.rush&&best.s<open+120?'rush':'task'),id:best.tk.id,n:best.tk.n,tip:best.tk.tip,z:best.tk.z==='*'?zone:best.tk.z,walk:best.w});
-        cur=best.s+best.d; if(best.tk.z!=='*') zone=best.tk.z; done[best.tk.id]=1; continue; }
-      var nextWin=null;
-      TASKS.forEach(function(tk){ if(done[tk.id]) return; tk.win.forEach(function(x){ var a=abs(x[0]); if(a!=null&&a>cur&&(nextWin==null||a<nextWin)) nextWin=a; }); });
-      var fe=Math.min(limit, nextWin==null?limit:nextWin); if(fe-cur<5) fe=Math.min(cur+10,close);
-      var last=out[out.length-1];
-      if(last&&last.kind==='free'&&last.z===zone) last.end=fe;
-      else out.push({t:cur,end:fe,kind:'free',id:'free-'+cur,n:zone==='SNW'?'任天堂世界拍照・逛紀念品':zone==='HP'?'霍格華茲城堡拍照・逛蜂蜜公爵':'彈性時間・吃小點心・拍照',tip:'App 上看到哪個設施排隊短就去，也可以休息一下。',z:zone});
-      cur=fe;
-    }
-    MARKS.forEach(function(m){ var t=toMin(m.t); if(t>open&&t<close) out.push({t:t,end:t,kind:'mark',id:'mark-'+m.t,n:m.n,tip:m.tip}); });
-    out.push({t:close,end:close+60,kind:'meal',id:'dinner',n:'閉園後：環球城市步行街晚餐',tip:'暫定 Shake Shack，吃完走回飯店。',z:'CW'});
-    out.sort(function(a,b){ return a.t-b.t || (a.kind==='mark'?-1:1); });
-    return {list:out, missing:EPS.filter(function(e){ return !toMin(ept[e.id]); }).length};
-  }
-  var KLAB={ep:'快通',rush:'開園衝刺',meal:'用餐',task:'',free:'彈性',pre:'出發',mark:''};
   function renderUSJ(){
-    var c=usjCfg(), ept=c.ep||{}, act=document.activeElement;
-    $('epRows').innerHTML=EPS.map(function(e){ return '<label class="ep-row"><span class="ep-n">'+esc(e.n)+'</span><input type="time" step="300" data-ep="'+e.id+'" value="'+(ept[e.id]||'')+'" aria-label="'+esc(e.n)+' 快通時間"></label>'; }).join('');
-    if(act!==$('usjOpen')) $('usjOpen').value=c.open||'08:30';
-    if(act!==$('usjClose')) $('usjClose').value=c.close||'21:30';
-    var r=planUSJ(), md=getPath('usj/done/'+(ME||'haoyu'))||{}, pd=getPath('usj/done/'+OTHER())||{};
-    $('epHint').textContent=r.missing?('還有 '+r.missing+' 個沒填，先用範例時間'):'已依你的快通時間排好';
-    $('usjPlan').innerHTML=r.list.map(function(b,k){
-      if(b.kind==='mark') return '<li class="u-mark"><span class="u-mt">'+hm(b.t)+'</span><span><b>'+esc(b.n)+'</b><small>'+esc(b.tip)+'</small></span></li>';
-      var on=!!md[b.id], po=!!pd[b.id], chk=b.kind!=='free'&&b.kind!=='pre';
-      return '<li class="tl-item u-'+b.kind+(on?' done':'')+'"><div class="tl-card"><div class="tl-top"><span class="tl-time">'+hm(b.t)+(b.end>b.t?'–'+hm(b.end):'')+'</span>'+
-        (KLAB[b.kind]?'<span class="badge u-b-'+b.kind+'">'+KLAB[b.kind]+'</span>':'')+(b.sample?'<span class="badge u-b-sample">範例時間</span>':'')+
-        (chk?'<span class="tl-act"><span class="tl-pt'+(po?' on':'')+'"><span class="who-av sm a-'+OTHER()+'">'+AV[OTHER()]+'</span></span><button type="button" class="tl-ck u-ck" data-u="'+b.id+'" aria-pressed="'+(on?'true':'false')+'" aria-label="完成：'+esc(b.n)+'"><svg aria-hidden="true"><use href="#i-check"/></svg></button></span>':'')+
-        '</div><p class="tl-title">'+esc(b.n)+'</p><p class="tl-note">'+esc(b.tip)+'</p>'+
-        '<div class="tags">'+(b.z&&ZN[b.z]?'<span class="tag u-zone">'+ZN[b.z]+'</span>':'')+(b.walk>=6?'<span class="tag u-walk">步行約 '+b.walk+' 分</span>':'')+'</div></div></li>';
+    var me=ME||'haoyu', pt=OTHER(), md=getPath('usj/done/'+me)||{}, pd=getPath('usj/done/'+pt)||{};
+    var main=USJ.filter(function(x){return !x.opt;}), a=main.filter(function(x){return md[x.id];}).length, b=main.filter(function(x){return pd[x.id];}).length, n=main.length;
+    $('usjProg').innerHTML=[[me,a],[pt,b]].map(function(x){ return '<div class="duo-row"><span class="who-av a-'+x[0]+'">'+AV[x[0]]+'</span><span class="duo-name">'+NAME[x[0]]+'</span><span class="vs-bar"><i style="width:'+(x[1]/n*100)+'%"></i></span><span class="duo-num">'+x[1]+' / '+n+'</span></div>'; }).join('');
+    var step=0;
+    $('usjPlan').innerHTML=USJ.map(function(u){
+      var on=!!md[u.id], po=!!pd[u.id], kind=u.meal?'meal':u.opt?'free':u.ep?'ep':'task'; if(!u.opt) step++;
+      var p=PIC[u.pic];
+      return '<li class="tl-item u-'+kind+(on?' done':'')+'" id="u-'+u.id+'"><div class="tl-card has-art"><div class="tl-body"><div class="tl-top">'+
+        '<span class="tl-time">'+(u.opt?'選填':'No.'+step)+'</span>'+(u.ep?'<span class="badge u-b-ep">快通</span>':'')+(u.time?'<span class="badge u-b-time">'+esc(u.time)+'</span>':'')+
+        '<span class="tl-act"><span class="tl-pt'+(po?' on':'')+'"><span class="who-av sm a-'+pt+'">'+AV[pt]+'</span></span><button type="button" class="tl-ck u-ck" data-u="'+u.id+'" aria-pressed="'+(on?'true':'false')+'" aria-label="完成：'+esc(u.n)+'"><svg aria-hidden="true"><use href="#i-check"/></svg>'+(u.entry?'':'<span class="tl-stamp" aria-hidden="true">章</span>')+'</button></span>'+
+        '</div><p class="tl-title">'+esc(u.n)+'</p><p class="tl-note">'+esc(u.tip)+'</p><div class="tags"><span class="tag u-zone">'+ZN[u.z]+'</span></div></div>'+
+        (p?'<div class="tl-art'+(step%2?'':' tilt-l')+'" style="background:'+p.bg+'">'+sv(p.s)+'</div>':'')+'</div></li>';
     }).join('');
   }
-  $('epRows').addEventListener('change',function(e){ var id=e.target.getAttribute('data-ep'); if(!id) return; var o={}; o['usj/ep/'+id]=e.target.value||null; write(o); });
-  $('usjOpen').addEventListener('change',function(){ if(this.value) write({'usj/open':this.value}); });
-  $('usjClose').addEventListener('change',function(){ if(this.value) write({'usj/close':this.value}); });
   $('usjPlan').addEventListener('click',function(e){ var b=e.target.closest('.u-ck'); if(!b) return; if(!ME){ askWho(); return; }
-    var o={}; o['usj/done/'+ME+'/'+b.getAttribute('data-u')]=b.getAttribute('aria-pressed')!=='true'?Date.now():null; write(o); });
+    var id=b.getAttribute('data-u'), on=b.getAttribute('aria-pressed')!=='true', o={}; o['usj/done/'+ME+'/'+id]=on?Date.now():null; write(o);
+    if(on){ var f=FOOT.filter(function(x){return x[3]==='u:'+id;})[0]; if(f){ renderGame('u:'+id); toast('<span class="t-pic">'+sv(PIC[f[0]].s)+'</span><span>獲得印章<b>'+esc(f[1])+'</b></span>'); } }
+  });
 
   function renderAll(){ renderWho(); refreshTimeline(); renderGame(); renderPack(); renderUSJ(); }
 
